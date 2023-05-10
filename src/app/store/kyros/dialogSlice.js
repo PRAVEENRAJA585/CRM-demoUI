@@ -1,0 +1,28 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const dialogSlice = createSlice({
+  name: 'dialog',
+  initialState: {
+    state: false,
+    options: {
+      children: 'Hi',
+    },
+  },
+  reducers: {
+    openDialog: (state, action) => {
+      state.state = true;
+      state.options = action.payload;
+    },
+    closeDialog: (state, action) => {
+      state.state = false;
+    },
+  },
+});
+
+export const { openDialog, closeDialog } = dialogSlice.actions;
+
+export const selectKyrosDialogState = ({ kyros }) => kyros.dialog.state;
+
+export const selectKyrosDialogOptions = ({ kyros }) => kyros.dialog.options;
+
+export default dialogSlice.reducer;
